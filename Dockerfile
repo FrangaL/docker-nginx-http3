@@ -159,11 +159,10 @@ CMD ["nginx", "-g", "daemon off;"]
 # Build-time metadata as defined at http://label-schema.org
 ARG VCS_REF
 
-LABEL org.label-schema.build-date=$BUILD_DATE \
+LABEL org.label-schema.build-date="$BUILD_DATE" \
   org.label-schema.version="$NGINX_VERSION" \
   org.label-schema.docker.schema-version="1.0" \
   org.label-schema.name="docker-nginx-http3" \
   org.label-schema.description="Docker image for Nginx + HTTP/3 powered by Quiche" \
   org.label-schema.vcs-ref=$VCS_REF \
-  org.label-schema.vcs-url="https://github.com/FrangaL/docker-nginx-http3" \
-  org.label-schema.docker.cmd= "docker run --name nginx-http3 -d -p 80:80 -p 443:443/tcp -p 443:443/udp nginx:$NGINX_VERSION"
+  org.label-schema.vcs-url="https://github.com/FrangaL/docker-nginx-http3"
