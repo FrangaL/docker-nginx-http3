@@ -1,7 +1,5 @@
 FROM debian:buster-slim AS builder
 
-LABEL maintainer="FrangaL <frangal@gmail.com>"
-
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 ENV NGINX_PATH /etc/nginx
@@ -93,12 +91,16 @@ STOPSIGNAL SIGTERM
 CMD ["nginx", "-g", "daemon off;"]
 
 # Build-time metadata as defined at http://label-schema.org
+ARG BUILD_DATE
 ARG VCS_REF
+ARG VCS_URL
+ARG NGINX_VERSION
 
-LABEL org.label-schema.build-date="$BUILD_DATE" \
+LABEL maintainer="FrangaL <frangal@gmail.com>" \
+  org.label-schema.build-date="$BUILD_DATE" \
   org.label-schema.version="$NGINX_VERSION" \
   org.label-schema.docker.schema-version="1.0" \
   org.label-schema.name="docker-nginx-http3" \
   org.label-schema.description="Docker image for Nginx + HTTP/3 powered by Quiche" \
   org.label-schema.vcs-ref=$VCS_REF \
-  org.label-schema.vcs-url="https://github.com/FrangaL/docker-nginx-http3"
+  org.label-schema.vcs-url=$VCS_URL
