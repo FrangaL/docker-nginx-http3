@@ -1,4 +1,4 @@
-FROM debian:buster-slim AS builder
+FROM debian:sid-slim AS builder
 
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
