@@ -67,7 +67,7 @@ RUN curl -O https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     --with-quiche=/opt/quiche &&\
     make && make install;
 
-FROM debian:buster-slim
+FROM debian:sid-slim
 
 COPY --from=builder /usr/sbin/nginx /usr/sbin/
 COPY --from=builder /etc/nginx/ /etc/nginx/
