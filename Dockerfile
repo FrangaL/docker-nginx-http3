@@ -69,14 +69,15 @@ RUN curl -O https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
 
 FROM debian:sid-slim
 
-COPY --from=builder /usr/sbin/nginx /usr/sbin/
-COPY --from=builder /etc/nginx/ /etc/nginx/
-COPY --from=builder /usr/lib/nginx/modules /usr/lib/nginx/modules
-
 RUN mkdir -p /var/log/nginx \
-  && mkdir -p /var/cache/nginx/{client_temp,fastcgi_temp,proxy_temp} \
+  && mkdir -p /var/cache/nginx/client_temp \
+  && mkdir -p /var/cache/nginx/fastcgi_temp \
+  && mkdir -p /var/cache/nginx/proxy_temp \
+  && mkdir -p /usr/lib/nginx \
   && mkdir -p /var/www \
-  && mkdir -p /etc/nginx/{sites-available,sites-enabled,certs} \
+  && mkdir -p /etc/nginx/sites-available \
+  && mkdir -p /etc/nginx/sites-enabled \
+  && mkdir -p /etc/nginx/certs \
   && touch touch /var/log/nginx/{error,access}.log \
   && chown www-data:www-data /var/log/nginx/ -R \
   && chown www-data:www-data /var/cache/nginx/ -R \
@@ -84,6 +85,10 @@ RUN mkdir -p /var/log/nginx \
   && ln -sf /dev/stdout /var/log/nginx/access.log \
   && ln -sf /dev/stderr /var/log/nginx/error.log \
   && sed -i '4s/^/<link rel="icon" href="data:,"> /' /etc/nginx/html/index.html
+
+  COPY --from=builder /usr/sbin/nginx /usr/sbin/
+  COPY --from=builder /etc/nginx/ /etc/nginx/
+  COPY --from=builder /usr/lib/nginx/modules /usr/lib/nginx/modules
 
 EXPOSE 80
 
