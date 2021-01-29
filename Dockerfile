@@ -89,7 +89,6 @@ RUN mkdir -p /var/log/nginx \
 
 COPY --from=builder /usr/sbin/nginx /usr/sbin/
 COPY --from=builder /etc/nginx/ /etc/nginx/
-COPY --from=builder /usr/lib/nginx/modules /usr/lib/nginx/modules
 
 EXPOSE 80
 
