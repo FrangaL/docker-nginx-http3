@@ -71,6 +71,7 @@ FROM debian:sid-slim
 
 COPY --from=builder /usr/sbin/nginx /usr/sbin/
 COPY --from=builder /etc/nginx/ /etc/nginx/
+COPY --from=builder /usr/lib/nginx/modules /usr/lib/nginx/modules
 
 RUN mkdir -p /var/log/nginx \
   && mkdir -p /var/cache/nginx/{client_temp,fastcgi_temp,proxy_temp} \
