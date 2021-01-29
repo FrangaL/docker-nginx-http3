@@ -85,12 +85,11 @@ RUN mkdir -p /var/log/nginx \
   && chown www-data:www-data /var/cache/nginx/ -R \
   && chown www-data:www-data /var/www \
   && ln -sf /dev/stdout /var/log/nginx/access.log \
-  && ln -sf /dev/stderr /var/log/nginx/error.log \
-  && sed -i '4s/^/<link rel="icon" href="data:,"> /' /etc/nginx/html/index.html
+  && ln -sf /dev/stderr /var/log/nginx/error.log
 
-  COPY --from=builder /usr/sbin/nginx /usr/sbin/
-  COPY --from=builder /etc/nginx/ /etc/nginx/
-  COPY --from=builder /usr/lib/nginx/modules /usr/lib/nginx/modules
+COPY --from=builder /usr/sbin/nginx /usr/sbin/
+COPY --from=builder /etc/nginx/ /etc/nginx/
+COPY --from=builder /usr/lib/nginx/modules /usr/lib/nginx/modules
 
 EXPOSE 80
 
