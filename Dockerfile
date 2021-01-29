@@ -67,7 +67,7 @@ RUN curl -O https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     --with-quiche=/opt/quiche &&\
     make && make install;
 
-FROM debian:sid-slim
+FROM microdeb/sid
 
 RUN mkdir -p /var/log/nginx \
   && mkdir -p /var/cache/nginx/client_temp \
@@ -75,10 +75,12 @@ RUN mkdir -p /var/log/nginx \
   && mkdir -p /var/cache/nginx/proxy_temp \
   && mkdir -p /usr/lib/nginx \
   && mkdir -p /var/www \
+  && mkdir -p /usr/lib/nginx/modules \
   && mkdir -p /etc/nginx/sites-available \
   && mkdir -p /etc/nginx/sites-enabled \
   && mkdir -p /etc/nginx/certs \
-  && touch touch /var/log/nginx/{error,access}.log \
+  && touch /var/log/nginx/error.log \
+  && touch /var/log/nginx/access.log \
   && chown www-data:www-data /var/log/nginx/ -R \
   && chown www-data:www-data /var/cache/nginx/ -R \
   && chown www-data:www-data /var/www \
@@ -108,5 +110,5 @@ LABEL maintainer="FrangaL <frangal@gmail.com>" \
   org.label-schema.docker.schema-version="1.0" \
   org.label-schema.name="docker-nginx-http3" \
   org.label-schema.description="Docker image for Nginx + HTTP/3 powered by Quiche" \
-  org.label-schema.vcs-ref=$VCS_REF \
-  org.label-schema.vcs-url=$VCS_URL
+  org.label-schema.vcs-ref="$VCS_REF" \
+  org.label-schema.vcs-url="$VCS_URL"
