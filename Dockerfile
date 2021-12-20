@@ -100,7 +100,7 @@ CMD ["nginx", "-g", "daemon off;"]
 ARG BUILD_DATE
 ARG VCS_REF
 ARG VCS_URL
-s
+
 LABEL maintainer="FrangaL <frangal@gmail.com>" \
   org.label-schema.build-date="$BUILD_DATE" \
   org.label-schema.version="$NGINX_VERSION" \
