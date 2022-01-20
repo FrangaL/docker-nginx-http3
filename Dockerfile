@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive \
 WORKDIR /opt
 
 RUN apt-get update && \
-    apt-get install -y libpcre3 libpcre3-dev zlib1g-dev zlib1g build-essential git curl cmake ca-certificates;
+    apt-get install -y libpcre3 libpcre3-dev zlib1g-dev zlib1g build-essential git curl cmake ca-certificates gzip;
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN curl -O https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     tar xvzf nginx-$NGINX_VERSION.tar.gz && \
