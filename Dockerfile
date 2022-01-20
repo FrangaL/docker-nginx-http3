@@ -18,8 +18,9 @@ RUN curl -O https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     patch -p01 < ../quiche/nginx/nginx-1.16.patch && \
     curl https://sh.rustup.rs -sSf | sh -s -- -y -q && \
     export PATH="$HOME/.cargo/bin:$PATH" && \
-    mkdir build && pushd build && \
-    ./configure \
+    mkdir build
+RUN RUN bash -xc "pushd build"
+RUN ./configure \
     --prefix=$NGINX_PATH \
     --sbin-path=/usr/sbin/nginx \
     --modules-path=/usr/lib/nginx/modules \
