@@ -18,7 +18,7 @@ RUN wget https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     cd quiche && pwd && ls nginx && \
     git checkout ${QUICHE_REVISION} && \
     cd ../nginx-$NGINX_VERSION && \
-    patch -p01 < /opt/quiche/nginx/nginx-1.16.patch && \
+    patch -p01 < ../quiche/nginx/nginx-1.16.patch && \
     curl https://sh.rustup.rs -sSf | sh -s -- -y -q && \
     export PATH="$HOME/.cargo/bin:$PATH" && \
     mkdir build && \
