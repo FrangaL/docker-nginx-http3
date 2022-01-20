@@ -8,17 +8,16 @@ ENV QUICHE_REVISION 92dcc500462ac22bb72e822d3f4e99039d29acfd
 WORKDIR /opt
 
 RUN apt-get update && \
-    apt-get install -y libpcre3 libpcre3-dev zlib1g-dev zlib1g build-essential git curl cmake ca-certificates gzip;
+    apt-get install -y libpcre3 libpcre3-dev zlib1g-dev zlib1g build-essential git curl wget  cmake ca-certificates gzip;
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-RUN curl https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
+RUN wget https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     tar xvzf nginx-$NGINX_VERSION.tar.gz && \
     git clone --recursive https://github.com/cloudflare/quiche && \
     git clone --recursive https://github.com/google/ngx_brotli.git && \
     git clone --depth=1 --recursive https://github.com/openresty/headers-more-nginx-module && \
     cd quiche && \
     git checkout ${QUICHE_REVISION} && \
-    cd .. && \
-    cd nginx-$NGINX_VERSION && \
+    cd ../nginx-$NGINX_VERSION && \
     patch -p01 < ../quiche/nginx/nginx-1.16.patch && \
     curl https://sh.rustup.rs -sSf | sh -s -- -y -q && \
     export PATH="$HOME/.cargo/bin:$PATH" && \
