@@ -3,7 +3,7 @@ FROM microdeb/sid AS builder
 ENV DEBIAN_FRONTEND noninteractive \
     NGINX_PATH /etc/nginx \
     NGINX_VERSION 1.16.1
-    QUICHE_REVISION=92dcc500462ac22bb72e822d3f4e99039d29acfd
+    QUICHE_REVISION 92dcc500462ac22bb72e822d3f4e99039d29acfd
 
 WORKDIR /opt
 
