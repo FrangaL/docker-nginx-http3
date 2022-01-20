@@ -2,7 +2,7 @@ FROM microdeb/sid AS builder
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV NGINX_PATH /etc/nginx
-ARG NGINX_VERSION 1.16.1
+ENV NGINX_VERSION 1.16.1
 
 WORKDIR /opt
 
