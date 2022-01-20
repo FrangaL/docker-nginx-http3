@@ -7,7 +7,7 @@ ARG NGINX_VERSION 1.16.1
 WORKDIR /opt
 
 RUN apt-get update && \
-    apt-get install -y libpcre3 libpcre3-dev zlib1g-dev zlib1g build-essential git curl cmake;
+    apt-get install -y libpcre3 libpcre3-dev zlib1g-dev zlib1g build-essential git curl cmake ca-certificates;
 
 RUN curl -O https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     tar xvzf nginx-$NGINX_VERSION.tar.gz && \
