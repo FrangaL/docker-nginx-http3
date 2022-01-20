@@ -19,7 +19,7 @@ RUN curl -O https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     curl https://sh.rustup.rs -sSf | sh -s -- -y -q && \
     export PATH="$HOME/.cargo/bin:$PATH" && \
     mkdir build
-RUN RUN bash -xc "pushd build"
+RUN bash -xc "pushd build"
 RUN ./configure \
     --prefix=$NGINX_PATH \
     --sbin-path=/usr/sbin/nginx \
