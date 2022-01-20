@@ -11,7 +11,7 @@ RUN apt-get update && \
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN curl -O https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     tar xvzf nginx-$NGINX_VERSION.tar.gz && \
-    git clone --recursive https://github.com/cloudflare/quiche && \
+    git clone -b a9ee599a7bf9f4365d4368c1b0d8e7b92bf2424f --recursive https://github.com/cloudflare/quiche && \
     git clone --recursive https://github.com/google/ngx_brotli.git && \
     git clone --depth=1 --recursive https://github.com/openresty/headers-more-nginx-module && \
     cd nginx-$NGINX_VERSION && \
@@ -19,7 +19,7 @@ RUN curl -O https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     curl https://sh.rustup.rs -sSf | sh -s -- -y -q && \
     export PATH="$HOME/.cargo/bin:$PATH" && \
     mkdir build && \
-    bash -xc "pushd build" && \
+    pushd build && \
     ./configure \
     --prefix=$NGINX_PATH \
     --sbin-path=/usr/sbin/nginx \
