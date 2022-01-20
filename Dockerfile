@@ -15,7 +15,7 @@ RUN wget https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     git clone --recursive https://github.com/cloudflare/quiche && \
     git clone --recursive https://github.com/google/ngx_brotli.git && \
     git clone --depth=1 --recursive https://github.com/openresty/headers-more-nginx-module && \
-    cd quiche && pwd && ls && \
+    cd quiche && pwd && ls nginx && \
     git checkout ${QUICHE_REVISION} && \
     cd ../nginx-$NGINX_VERSION && \
     patch -p01 < /opt/quiche/nginx/nginx-1.16.patch && \
