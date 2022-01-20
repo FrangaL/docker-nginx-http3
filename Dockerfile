@@ -18,7 +18,7 @@ RUN wget https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     cd quiche && pwd && ls && \
     git checkout ${QUICHE_REVISION} && \
     cd ../nginx-$NGINX_VERSION && \
-    patch -p01 < /opt/quiche/quiche/nginx/nginx-1.16.patch && \
+    patch -p01 < /opt/quiche/nginx/nginx-1.16.patch && \
     curl https://sh.rustup.rs -sSf | sh -s -- -y -q && \
     export PATH="$HOME/.cargo/bin:$PATH" && \
     mkdir build && \
@@ -67,7 +67,7 @@ RUN wget https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     --add-module=/opt/headers-more-nginx-module \
     --with-http_v3_module \
     --with-openssl=/opt/quiche/quiche/deps/boringssl \
-    --build="quiche-$(git --git-dir=../quiche/quiche/.git rev-parse --short HEAD)" \
+    --build="quiche-$(git --git-dir=../quiche/.git rev-parse --short HEAD)" \
     --with-quiche=/opt/quiche/quiche &&\
     make && make install;
 
