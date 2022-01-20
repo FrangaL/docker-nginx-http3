@@ -8,7 +8,7 @@ WORKDIR /opt
 
 RUN apt-get update && \
     apt-get install -y libpcre3 libpcre3-dev zlib1g-dev zlib1g build-essential git curl cmake ca-certificates;
-
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN curl -O https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     tar xvzf nginx-$NGINX_VERSION.tar.gz && \
     git clone --recursive https://github.com/cloudflare/quiche && \
@@ -18,9 +18,9 @@ RUN curl -O https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     patch -p01 < ../quiche/nginx/nginx-1.16.patch && \
     curl https://sh.rustup.rs -sSf | sh -s -- -y -q && \
     export PATH="$HOME/.cargo/bin:$PATH" && \
-    mkdir build
-RUN bash -xc "pushd build"
-RUN ./configure \
+    mkdir build && \
+    bash -xc "pushd build" && \
+    ./configure \
     --prefix=$NGINX_PATH \
     --sbin-path=/usr/sbin/nginx \
     --modules-path=/usr/lib/nginx/modules \
