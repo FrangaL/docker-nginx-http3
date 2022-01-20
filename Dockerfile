@@ -11,7 +11,7 @@ RUN apt-get update && \
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN curl -O https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     tar xvzf nginx-$NGINX_VERSION.tar.gz && \
-    git clone -b e85213586be5757b9924b0e88947bba74b49ca42 --recursive https://github.com/cloudflare/quiche && \
+    git clone --recursive https://github.com/cloudflare/quiche && \
     git clone --recursive https://github.com/google/ngx_brotli.git && \
     git clone --depth=1 --recursive https://github.com/openresty/headers-more-nginx-module && \
     cd nginx-$NGINX_VERSION && \
