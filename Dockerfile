@@ -1,17 +1,16 @@
 FROM microdeb/sid AS builder
 
-ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 ENV NGINX_PATH /etc/nginx
-ENV NGINX_VERSION 1.16.1
+ARG NGINX_VERSION 1.16.1
 
 WORKDIR /opt
 
 RUN apt-get update && \
     apt-get install -y libpcre3 libpcre3-dev zlib1g-dev zlib1g build-essential git curl cmake;
 
-RUN curl -O https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz
-RUN tar xvzf nginx-$NGINX_VERSION.tar.gz && \
+RUN curl -O https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
+    tar xvzf nginx-$NGINX_VERSION.tar.gz && \
     git clone --recursive https://github.com/cloudflare/quiche && \
     git clone --recursive https://github.com/google/ngx_brotli.git && \
     git clone --depth=1 --recursive https://github.com/openresty/headers-more-nginx-module && \
