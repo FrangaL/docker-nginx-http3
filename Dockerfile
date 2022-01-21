@@ -68,8 +68,8 @@ RUN wget https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     --add-module=/opt/headers-more-nginx-module \
     --with-http_v3_module \
     --with-openssl=/opt/quiche/quiche/deps/boringssl \
-    --build="quiche-$(git --git-dir=../quiche/.git rev-parse --short HEAD)" \
-    --with-quiche=/opt/quiche/quiche &&\
+    --build="quiche-$(git --git-dir=/opt/quiche/.git rev-parse --short HEAD)" \
+    --with-quiche=/opt/quiche &&\
     make && make install;
 
 FROM microdeb/sid
