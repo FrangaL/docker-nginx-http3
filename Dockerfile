@@ -24,7 +24,7 @@ RUN wget https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     export PATH="$HOME/.cargo/bin:$PATH" && \
     mkdir build && \
     pushd build && \
-    ./configure \
+    ../configure \
     --prefix=$NGINX_PATH \
     --sbin-path=/usr/sbin/nginx \
     --modules-path=/usr/lib/nginx/modules \
